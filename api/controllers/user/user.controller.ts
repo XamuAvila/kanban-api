@@ -1,17 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Response, Request } from "express";
-import { UsuarioEntity } from "../../entities/usuario.entity";
 import { UserService } from "../../services/user/user.service";
 import { Service, Container } from "typedi";
 
 @Service()
 export class UserController {
-    async signUp(req: Request, res: Response) {
+    async signUp(req: Request, res: Response): Promise<void> {
         try {
             const userService = Container.get(UserService);
-            const usuario: UsuarioEntity = UsuarioEntity.validateEntity(req.body);
-            const createdUser = await userService.createUser(usuario);
+            const createdUser = await userService.createUser(req.body);
             res.status(200).send(createdUser);
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
+            res.status(error?.statusCode ?? 500).send({
+                message: error.message
+            });
+        }
+    }
+
+    async login(req: Request, res: Response): Promise<void> {
+        try {
+            const userService = Container.get(UserService);
+            const user = await userService.login(req.body);
+            res.status(200).send(user);
         } catch (error: any) {
             res.status(error?.statusCode ?? 500).send({
                 message: error.message
