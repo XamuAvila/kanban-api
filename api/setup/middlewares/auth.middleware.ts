@@ -21,7 +21,7 @@ export class AuthMiddleware {
 
     static async validate(req: Request, res: Response, next: NextFunction) {
         try {
-            const token = req.headers.Authorization;
+            const token = String(req.headers.authorization).split(" ")[1];
 
             if (!token) {
                 res.status(HTTP_STATUSES.BAD_REQUEST).send({

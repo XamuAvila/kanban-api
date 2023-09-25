@@ -22,6 +22,7 @@ export class UpdateCardRequestDto {
     }
 
     static validate(params: IUpdateCardRequest): UpdateCardRequestDto {
+
         const cardData = new UpdateCardRequestDto(params);
 
         const cardSchema = Joi.object({

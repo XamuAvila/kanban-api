@@ -2,7 +2,7 @@ import Joi from "joi";
 import { BaseError } from "../../../../shared/errors/baseError";
 import { HTTP_STATUSES } from "../../../../shared/constants/httpStatuses.constants";
 export class UserLoginResponseDto {
-    private token!: string;
+    public token!: string;
     constructor(token: string){
         this.token = token;
         return this.validate();

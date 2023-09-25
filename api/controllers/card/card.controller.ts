@@ -3,15 +3,16 @@ import Container, { Service } from "typedi";
 import { Request, Response } from "express";
 import { CardService } from "../../services/card/card.service";
 import { Card } from "@prisma/client";
+import { HTTP_STATUSES } from "../../shared/constants/httpStatuses.constants";
 @Service()
 export class CardController {
     async createCard(req: Request, res: Response): Promise<void> {
         try {
             const cardService = Container.get(CardService);
             const createdCard = await cardService.createCard(req);
-            res.status(200).send(createdCard);
+            res.status(201).json(createdCard);
         } catch (error: any) {
-            res.status(error?.statusCode ?? 500).send({
+            res.status(error?.statusCode ?? HTTP_STATUSES.INTERNAL_SERVER_ERROR).json({
                 message: error.message
             });
         }
@@ -21,9 +22,9 @@ export class CardController {
         try {
             const cardService = Container.get(CardService);
             const cards: Card[] = await cardService.getCards(req);
-            res.status(200).json(cards);
+            res.status(HTTP_STATUSES.OK).json(cards);
         } catch (error: any) {
-            res.status(error?.statusCode ?? 500).send({
+            res.status(error?.statusCode ?? HTTP_STATUSES.INTERNAL_SERVER_ERROR).json({
                 message: error.message
             });
         }
@@ -33,9 +34,9 @@ export class CardController {
         try {
             const cardService = Container.get(CardService);
             const card: Card[] = await cardService.getCard(req);
-            res.status(200).send(card);
+            res.status(HTTP_STATUSES.OK).json(card);
         } catch (error: any) {
-            res.status(error?.statusCode ?? 500).send({
+            res.status(error?.statusCode ?? HTTP_STATUSES.INTERNAL_SERVER_ERROR).json({
                 message: error.message
             });
         }
@@ -45,9 +46,9 @@ export class CardController {
         try {
             const cardService = Container.get(CardService);
             const updatedCard: Card[] = await cardService.updateCard(req);
-            res.status(200).send(updatedCard);
+            res.status(HTTP_STATUSES.OK).json(updatedCard);
         } catch (error: any) {
-            res.status(error?.statusCode ?? 500).send({
+            res.status(error?.statusCode ?? HTTP_STATUSES.INTERNAL_SERVER_ERROR).json({
                 message: error.message
             });
         }
@@ -57,9 +58,9 @@ export class CardController {
         try {
             const cardService = Container.get(CardService);
             const deletedCard: Card[] = await cardService.deleteCard(req);
-            res.status(200).send(deletedCard);
+            res.status(HTTP_STATUSES.OK).json(deletedCard);
         } catch (error: any) {
-            res.status(error?.statusCode ?? 500).send({
+            res.status(error?.statusCode ?? HTTP_STATUSES.INTERNAL_SERVER_ERROR).json({
                 message: error.message
             });
         }

@@ -2,6 +2,7 @@
 import { Response, Request } from "express";
 import { UserService } from "../../services/user/user.service";
 import { Service, Container } from "typedi";
+import { HTTP_STATUSES } from "../../shared/constants/httpStatuses.constants";
 
 @Service()
 export class UserController {
@@ -9,9 +10,9 @@ export class UserController {
         try {
             const userService = Container.get(UserService);
             const createdUser = await userService.createUser(req.body);
-            res.status(200).send(createdUser);
+            res.status(HTTP_STATUSES.OK).send(createdUser);
         } catch (error: any) {
-            res.status(error?.statusCode ?? 500).send({
+            res.status(error?.statusCode ?? HTTP_STATUSES.INTERNAL_SERVER_ERROR).send({
                 message: error.message
             });
         }
@@ -21,9 +22,9 @@ export class UserController {
         try {
             const userService = Container.get(UserService);
             const user = await userService.login(req.body);
-            res.status(200).send(user);
+            res.status(HTTP_STATUSES.OK).json(user.token);
         } catch (error: any) {
-            res.status(error?.statusCode ?? 500).send({
+            res.status(error?.statusCode ?? HTTP_STATUSES.INTERNAL_SERVER_ERROR).send({
                 message: error.message
             });
         }

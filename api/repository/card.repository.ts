@@ -39,7 +39,7 @@ export class CardRepository {
             throw new BaseError("No cards found", HTTP_STATUSES.NOT_FOUND);
         }
 
-        return cards ?? [];
+        return cards;
     }
     async getCard(card: GetCardRequestDto, user: AuthUser): Promise<Card[]>{
         await this.prismaClient.$connect();
