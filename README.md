@@ -1,2 +1,9 @@
-# kanban-api
-Backend de um APP Kanban disponibilizado pela Ada Tech
+# Kanban-api
+
+## First setup
+
+```
+npm install
+npm run config:db
+```
+

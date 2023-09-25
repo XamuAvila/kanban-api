@@ -10,7 +10,7 @@ export class UserLoginRequestDto {
     login: string;
     senha: string;
 
-    static validateEntity(usuario: Prisma.UsuarioCreateInput): UserLoginRequestDto {
+    static validate(usuario: Prisma.UsuarioCreateInput): UserLoginRequestDto {
         const userSchema = Joi.object({
             email: Joi.string().email().required(),
             login: Joi.string().max(200).required(),

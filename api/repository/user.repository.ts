@@ -1,7 +1,7 @@
 import { PrismaClient, Usuario } from "@prisma/client";
 import { Service } from "typedi";
 import { AuthMiddleware } from "../setup/middlewares/auth.middleware";
-import { UserSignupRequestDto } from "../dto/user/signup/request/user.signup.request.dto";
+import { UserSignupRequestDto } from "../dto/user/signup/request/userSignup.request.dto";
 @Service()
 export class UserRepository {
     private prismaClient!: PrismaClient;

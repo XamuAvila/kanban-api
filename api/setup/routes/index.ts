@@ -1,12 +1,12 @@
 import { Application, Router } from "express";
 import {UserRoutes} from "./user.routes";
+import { CardRouter } from "./card.routes";
 
-const initializeRoutes = (app: Application) =>{
-    const router = Router();
-    new UserRoutes(router);
-    app.use(router);
-};
-
-export {
-    initializeRoutes
-};
+export class Routes {
+    static initializeRoutes = (app: Application) =>{
+        const router = Router();
+        new UserRoutes(router);
+        new CardRouter(router);
+        app.use(router);
+    };
+}

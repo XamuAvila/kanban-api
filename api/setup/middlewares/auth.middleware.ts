@@ -19,9 +19,9 @@ export class AuthMiddleware {
         return await bcrypt.compare(password, hash);
     }
 
-    static async validateAuth(req: Request, res: Response, next: NextFunction) {
+    static async validate(req: Request, res: Response, next: NextFunction) {
         try {
-            const token = req.headers.authorization;
+            const token = req.headers.Authorization;
 
             if (!token) {
                 res.status(HTTP_STATUSES.BAD_REQUEST).send({
@@ -29,7 +29,9 @@ export class AuthMiddleware {
                 });
                 return;
             }
-            verify(String(token), auth.secret);
+            
+            req.body.user = verify(String(token), auth.secret);
+
             next();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error:any) {

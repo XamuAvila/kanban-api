@@ -7,11 +7,11 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:./dev.db"
 }
 
 model Usuario {
-  id    Int     @id @default(autoincrement())
+  id    String     @id @default(uuid())
   email String  @unique
   login  String @unique
   senha String
@@ -19,10 +19,10 @@ model Usuario {
 }
 
 model Card {
-  id            Int     @id @default(autoincrement())
+  id            String     @id @default(uuid())
   titulo        String
-  conteudo      String?
+  conteudo      String
   lista         String
   usuario       Usuario    @relation(fields: [idUsuario], references: [id])
-  idUsuario     Int
+  idUsuario     String
 }

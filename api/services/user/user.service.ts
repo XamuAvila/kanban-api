@@ -2,10 +2,10 @@ import { Service, Container } from "typedi";
 import { BaseError } from "../../shared/errors/baseError";
 import { HTTP_STATUSES } from "../../shared/constants/httpStatuses.constants";
 import { UserRepository } from "../../repository/user.repository";
-import { UserLoginRequestDto } from "../../dto/user/login/request/user.login.request.dto";
-import { UserSignupRequestDto } from "../../dto/user/signup/request/user.signup.request.dto";
+import { UserLoginRequestDto } from "../../dto/user/login/request/userLogin.request.dto";
+import { UserSignupRequestDto } from "../../dto/user/signup/request/userSignup.request.dto";
 import { Usuario } from "@prisma/client";
-import { UserLoginResponseDto } from "../../dto/user/login/response/user.login.response.dto";
+import { UserLoginResponseDto } from "../../dto/user/login/response/userLogin.response.dto";
 import { AuthService } from "../auth/auth.service";
 
 @Service()

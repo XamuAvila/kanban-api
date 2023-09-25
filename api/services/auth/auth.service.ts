@@ -1,6 +1,6 @@
 import Container, { Service } from "typedi";
-import { UserLoginRequestDto } from "../../dto/user/login/request/user.login.request.dto";
-import { UserLoginResponseDto } from "../../dto/user/login/response/user.login.response.dto";
+import { UserLoginRequestDto } from "../../dto/user/login/request/userLogin.request.dto";
+import { UserLoginResponseDto } from "../../dto/user/login/response/userLogin.response.dto";
 import { UserRepository } from "../../repository/user.repository";
 import { BaseError } from "../../shared/errors/baseError";
 import { HTTP_STATUSES } from "../../shared/constants/httpStatuses.constants";
@@ -26,6 +26,7 @@ export class AuthService {
 
         const token = await sign(
             {
+                id: validUser.id,
                 login: validUser.login,
                 senha: validUser.senha
             },
