@@ -7,6 +7,9 @@ npm install
 npm run db:create  - E aceitar quaisquer alterações que o console pedir
 npm run db:seed - Criar o usuário no .env
 
+npm run start para rodar em produção
+npm run start:dev para rodar em modo de desenvolvimento
+
 ```
 
 ## Docker
