@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import { Routes } from "./setup/routes";
-
 export class App {
     private app = express();
 

@@ -1,7 +1,6 @@
 import { Application, Router } from "express";
-import {UserRoutes} from "./user.routes";
+import { UserRoutes } from "./user.routes";
 import { CardRouter } from "./card.routes";
-
 export class Routes {
     static initializeRoutes = (app: Application) =>{
         const router = Router();
